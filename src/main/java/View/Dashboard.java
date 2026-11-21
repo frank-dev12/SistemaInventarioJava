@@ -31,6 +31,7 @@ public class Dashboard extends JFrame {
     private final JButton btnInicio = new JButton("Inicio");
     private final JButton btnProductos = new JButton("Productos");
     private final JButton btnCategorias = new JButton("Categorias");
+    private final JButton btnClientes = new JButton("Clientes");
     private final JButton btnEntradasSalidas = new JButton("Entradas / Salidas");
     private final JButton btnReportes = new JButton("Reportes");
     private final JButton btnUsuarios = new JButton("Usuarios");
@@ -39,6 +40,7 @@ public class Dashboard extends JFrame {
     private final PanelInicio panelInicio = new PanelInicio();
     private final PanelProductos panelProductos = new PanelProductos();
     private final PanelCategorias panelCategorias = new PanelCategorias();
+    private final PanelClientes panelClientes = new PanelClientes();
     private final PanelEntradasSalidas panelEntradasSalidas = new PanelEntradasSalidas();
     private final PanelReportes panelReportes = new PanelReportes();
     private final PanelUsuarios panelUsuarios = new PanelUsuarios();
@@ -55,6 +57,7 @@ public class Dashboard extends JFrame {
         agregarModulo(btnInicio, "Inicio", panelInicio);
         agregarModulo(btnProductos, "Productos", panelProductos);
         agregarModulo(btnCategorias, "Categorias", panelCategorias);
+        agregarModulo(btnClientes, "Clientes",panelClientes);
         agregarModulo(btnEntradasSalidas, "EntradasSalidas", panelEntradasSalidas);
         agregarModulo(btnReportes, "Reportes", panelReportes);
         agregarModulo(btnUsuarios, "Usuarios", panelUsuarios);
@@ -66,7 +69,7 @@ public class Dashboard extends JFrame {
     /** Botones del menú lateral, en orden. */
     private JButton[] botones() {
         return new JButton[]{btnInicio, btnProductos, btnCategorias,
-            btnEntradasSalidas, btnReportes, btnUsuarios};
+            btnClientes,btnEntradasSalidas, btnReportes, btnUsuarios};
     }
 
     private void estilizarMenu() {

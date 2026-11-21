@@ -1,20 +1,21 @@
 package Model;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexion {
 
-    // Valores por defecto para MariaDB/MySQL local (puerto 3306).
-    // Se pueden sobreescribir con variables de entorno o con -Dpropiedad=valor.
+    // Configuración por defecto para MySQL en el puerto 3307 con usuario root
     private static final String URL = valor("inventario.db.url", "INVENTARIO_DB_URL",
-            "jdbc:mysql://127.0.0.1:3306/InventarioDB"
-            + "?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+            "jdbc:mysql://127.0.0.1:3307/InventarioDB"
+            + "?useSSL=false&serverTimezone=America/Lima&allowPublicKeyRetrieval=true");
 
     private static final String USUARIO = valor("inventario.db.usuario", "INVENTARIO_DB_USUARIO",
-            "inventario");
+            "root");
 
     private static final String CLAVE = valor("inventario.db.clave", "INVENTARIO_DB_CLAVE",
-            "inventario123");
+            ""); // <-- Si tu usuario root tiene contraseña, escríbela entre estas comillas
 
     private static String valor(String propiedad, String variable, String porDefecto) {
         String v = System.getProperty(propiedad);
@@ -25,6 +26,11 @@ public class Conexion {
     }
 
     public static Connection getConexion() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("No se encontró el driver JDBC de MySQL (mysql-connector-j).", e);
+        }
         return DriverManager.getConnection(URL, USUARIO, CLAVE);
     }
 }

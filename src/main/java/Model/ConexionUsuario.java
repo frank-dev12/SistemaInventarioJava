@@ -6,7 +6,6 @@ import java.util.List;
 
 public class ConexionUsuario {
 
-    /** Valida las credenciales del login. Devuelve null si no coinciden. */
     public Usuario validar(String usuario, String clave) throws SQLException {
         String sql = "SELECT id, usuario, nombre, rol, activo FROM Usuarios "
                 + "WHERE usuario = ? AND clave = SHA2(?, 256) AND activo = 1";
